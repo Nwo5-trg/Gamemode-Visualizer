@@ -1,10 +1,5 @@
 #pragma once
 
-enum class GameplayElementType {
-    Portal = 0,
-    Speed = 1
-};
-
 enum class PortalType {
     Cube = 0,
     Ship = 1,
@@ -28,9 +23,9 @@ struct DrawSegmentStruct {
     float start;
     float end;
     cocos2d::ccColor4F col;
-    PortalType type;
+    int type;
 
-    DrawSegmentStruct(float st, float en, cocos2d::ccColor4F co, PortalType ty) {
+    DrawSegmentStruct(float st, float en, cocos2d::ccColor4F co, int ty) {
         start = st;
         end = en;
         col = co;
