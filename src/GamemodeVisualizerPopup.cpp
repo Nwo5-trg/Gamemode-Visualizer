@@ -69,9 +69,10 @@ void GamemodeVisualizerPopup::drawVisualizer() {
     auto drawPos = ccp((m_size.width - (Variables::width * 100)) / 2, m_size.height - Variables::height - 50.0f);
     m_draw->setPosition(drawPos);
 
-    auto segments = mysupercoolandawesomeparsingfunctionthathasnoissuesorflawswhatsoeverthesearethepositiveaffirmationsitellmyselfinthemirror(m_level);
+    if (m_segments.empty()) m_segments = mysupercoolandawesomeparsingfunctionthathasnoissuesorflawswhatsoeverthesearethepositiveaffirmationsitellmyselfinthemirror(m_level);
+    
     int i = 0;
-    for (const auto& segment : segments) {
+    for (const auto& segment : m_segments) {
         float start = segment.start * Variables::width;
         float end = segment.end * Variables::width;
         m_draw->drawRect(ccp(start, 0.0f), ccp(end, Variables::height), segment.col, 0, segment.col);
@@ -106,7 +107,7 @@ void GamemodeVisualizerPopup::drawVisualizer() {
     for (int j = 0; j < 8; j++) {
         float totalPercentage = 0.0f;
         auto type = static_cast<PortalType>(j);
-        for (const auto& segment : segments) {
+        for (const auto& segment : m_segments) {
             if (segment.type == type) totalPercentage += segment.end - segment.start;
         }
         if (totalPercentage == 0.0f) continue;

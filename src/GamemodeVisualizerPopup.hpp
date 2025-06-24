@@ -1,5 +1,7 @@
 #pragma once
 
+struct DrawSegmentStruct;
+
 class GamemodeVisualizerPopup : public geode::Popup<> {
 private:
     GJGameLevel* m_level;
@@ -7,6 +9,7 @@ private:
     cocos2d::CCDrawNode* m_draw;
     cocos2d::CCLayer* m_labelLayer;
     cocos2d::CCLabelBMFont* m_gamemodeDistributionLabel;
+    std::vector<DrawSegmentStruct> m_segments;
 
     int m_labelType = 0;
 
