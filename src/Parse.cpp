@@ -94,13 +94,13 @@ std::vector<std::vector<DrawSegmentStruct>> createDrawSegmentsFrom(GJGameLevel* 
     i = 0;
     for (const auto& speed : speedStructsVector) {
         float speedPercentage = speed.pos.x * percentageMultiplier;
-        auto col = colorFromSpeedType(speed.type);
+        auto col = colorFromSpeedType(speed.speed);
 
         if (i == speedStructsVector.size() - 1) {
-            speedSegmentStructs.emplace_back(speedPercentage, 100.0f, col, speed.type);
+            speedSegmentStructs.emplace_back(speedPercentage, 100.0f, col, speed.speed);
         } else {
             float nextSpeedPercentage = speedStructsVector[i + 1].pos.x * percentageMultiplier;
-            speedSegmentStructs.emplace_back(speedPercentage, nextSpeedPercentage, col, speed.type);
+            speedSegmentStructs.emplace_back(speedPercentage, nextSpeedPercentage, col, speed.speed);
         }
 
         i++;
