@@ -70,14 +70,20 @@ inline const std::unordered_map<PortalType, std::string> portalStringMap = {
     {PortalType::Spider, "Spider"}, {PortalType::Swing, "Swing"}
 };
 
+inline const std::unordered_map<PortalType, std::string> portalSpriteFrameMap = {
+    {PortalType::Cube, "portal_03_extra_2_001-uhd.png"}, {PortalType::Ship, "portal_04_extra_2_001-uhd.png"}, {PortalType::Ball, "portal_07_extra_2_001-uhd.png"},
+    {PortalType::Ufo, "portal_10_extra_2_001-uhd.png"}, {PortalType::Wave, "portal_13_extra_2_001-uhd.png"}, {PortalType::Robot, "portal_14_extra_2_001-uhd.png"},
+    {PortalType::Spider, "portal_17_extra_2_001-uhd.png"}, {PortalType::Swing, "portal_18_extra_2_001-uhd.png"}
+};
+
 inline const std::unordered_map<int, SpeedType> speedIDMap = {
     {200, SpeedType::Slow}, {201, SpeedType::Normal}, {202, SpeedType::Double},
     {203, SpeedType::Triple}, {1334, SpeedType::Quadruple}
 };
 
-inline const std::unordered_map<int, std::string> speedSpriteFrameMap = {
-    {200, "boost_01_001.png"}, {201, "boost_02_001.png"}, {202, "boost_03_001.png"},
-    {203, "boost_04_001.png"}, {1334, "boost_05_001.png"}
+inline const std::unordered_map<SpeedType, std::string> speedSpriteFrameMap = {
+    {SpeedType::Slow, "boost_01_001.png"}, {SpeedType::Normal, "boost_02_001.png"}, {SpeedType::Double, "boost_03_001.png"},
+    {SpeedType::Triple, "boost_04_001.png"}, {SpeedType::Quadruple, "boost_05_001.png"}
 };
 
 inline const std::unordered_map<SpeedType, std::string> speedStringMap = {
@@ -93,5 +99,6 @@ inline const std::set incompatibleTriggers = {
 inline const int endTrigger = 3600;
 
 cocos2d::ccColor4F colorFromPortalType(PortalType type);
+cocos2d::ccColor4F colorFromSpeedType(SpeedType speed);
 
 std::string ftofstr(float num, int rounding);
