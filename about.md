@@ -1,5 +1,7 @@
 # Gamemode Visualizer
 
-ts will not work with arrow triggers and memory levels for very obvious reasons
+A distant cousin of "Portal Order" from GDBrowser's Level Analysis tools.
 
-if u submit a bug report saying "its wrong on x lvl" i will hunt u down
+For obvious reasons, this mod will show inaccurate results for memory levels, levels with an end trigger, and levels containing directional changes. This mod does its best to detect these traits, but is far from perfect in doing so. Bug reports related to these issues will be ignored.
+
+Support for non-gamemode triggers will come at a later date.
