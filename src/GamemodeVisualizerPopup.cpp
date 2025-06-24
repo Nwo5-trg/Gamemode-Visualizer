@@ -64,7 +64,7 @@ bool GamemodeVisualizerPopup::setup() {
     mayBeUnsupportedLabel->setPosition(this->m_title->getPosition());
     mayBeUnsupportedLabel->setPositionY(mayBeUnsupportedLabel->getPositionY() - 12.5f);
     mayBeUnsupportedLabel->limitLabelWidth(this->m_mainLayer->getContentSize().width * .75f, 1.f, 0.001f);
-    mayBeUnsupportedLabel->setColor({100.f, 100.f, 100.f});
+    mayBeUnsupportedLabel->setColor({100, 100, 100});
     m_mainLayer->addChild(mayBeUnsupportedLabel);
 
     return true;
