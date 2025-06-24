@@ -94,7 +94,7 @@ void GamemodeVisualizerPopup::drawVisualizer() {
         auto label = CCLabelBMFont::create(labelString.c_str(), "bigFont.fnt");
         label->setScale(0.15f * Variables::width);
         label->limitLabelWidth((end - start) * 0.9f, label->getScale(), 0.0f);
-        if (label->getScale() < 0.2f) label->setVisible(false);
+        if (label->getScale() < Variables::minimumLabelSize) label->setVisible(false);
         label->setPosition(start + ((end - start) / 2) + drawPos.x, drawPos.y - 15.0f);
         m_labelLayer->addChild(label); 
 
