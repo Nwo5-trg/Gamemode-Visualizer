@@ -13,6 +13,17 @@ ccColor4F colorFromPortalType(PortalType type) {
         case PortalType::Spider: return ccc4f(0.4f, 0.1f, 0.85f, 1.0f);
         case PortalType::Swing: return ccc4f(1.0f, 1.0f, 0.5f, 1.0f);
     }
+    return ccc4f(0.4f, 1.0f, 0.2f, 1.0f); // schizo real
+}
+
+ccColor4F colorFromSpeedType(SpeedType speed) {
+    switch (speed) {
+        case SpeedType::Cube: return ccc4f(0.4f, 1.0f, 0.2f, 1.0f);
+        case SpeedType::Ship: return ccc4f(1.0f, 0.2f, 1.0f, 1.0f);
+        case SpeedType::Ball: return ccc4f(1.0f, 0.2f, 0.2f, 1.0f);
+        case SpeedType::Ufo: return ccc4f(0.95f, 0.6f, 0.04f, 1.0f);
+        case SpeedType::Wave: return ccc4f(0.01f, 0.8f, 1.0f, 1.0f);
+    }
     return ccc4f(1.0f, 1.0f, 1.0f, 1.0f); // schizo real
 }
 

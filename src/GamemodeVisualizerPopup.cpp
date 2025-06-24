@@ -19,10 +19,15 @@ GamemodeVisualizerPopup* GamemodeVisualizerPopup::create(GJGameLevel* level) {
 bool GamemodeVisualizerPopup::setup() {
     this->setTitle("Gamemode Visualizer :333", "goldFont.fnt");
 
-    auto draw = CCDrawNode::create();
-    draw->setBlendFunc({GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA});
-    m_mainLayer->addChild(draw);
-    m_draw = draw;
+    auto portalDraw = CCDrawNode::create();
+    portalDraw->setBlendFunc({GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA});
+    m_mainLayer->addChild(portalDraw);
+    m_portalDraw = portalDraw;
+
+    auto speedDraw = CCDrawNode::create();
+    speedDraw->setBlendFunc({GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA});
+    m_mainLayer->addChild(speedDraw);
+    m_speedDraw = speedDraw;
 
     auto labelLayer = CCLayer::create();
     labelLayer->setPosition(0.0f, 0.0f);
@@ -60,32 +65,56 @@ bool GamemodeVisualizerPopup::setup() {
     drawVisualizer();
 
     if (!Variables::hasDirectionalChanges && !Variables::endsEarly) return true;
-    auto mayBeUnsupportedLabel = CCLabelBMFont::create("(This level could change directions and/or end early. Results may be incorrect.)", "chatFont.fnt");
+    auto mayBeUnsupportedLabel = CCLabelBMFont::create("(This level could change directions and/or end early. Results may be inaccurate.)", "chatFont.fnt");
     mayBeUnsupportedLabel->setPosition(this->m_title->getPosition());
-    mayBeUnsupportedLabel->setPositionY(mayBeUnsupportedLabel->getPositionY() - 12.5f);
+    mayBeUnsupportedLabel->setPositionY(mayBeUnsupportedLabel->getPositionY() - 16.f);
     mayBeUnsupportedLabel->limitLabelWidth(this->m_mainLayer->getContentSize().width * .75f, 1.f, 0.001f);
-    mayBeUnsupportedLabel->setColor({100, 100, 100});
     m_mainLayer->addChild(mayBeUnsupportedLabel);
 
     return true;
 }
 
 void GamemodeVisualizerPopup::drawVisualizer() {
-    m_draw->clear();
+    m_portalDraw->clear();
+    m_speedDraw->clear();
     m_labelLayer->removeAllChildrenWithCleanup(true);
     
     auto drawPos = ccp((m_size.width - (Variables::width * 100)) / 2, m_size.height - Variables::height - 50.0f);
-    m_draw->setPosition(drawPos);
+    m_portalDraw->setPosition(drawPos);
+    m_speedDraw->setPosition(drawPos);
 
-    if (m_segments.empty()) m_segments = mysupercoolandawesomeparsingfunctionthathasnoissuesorflawswhatsoeverthesearethepositiveaffirmationsitellmyselfinthemirror(m_level);
+    m_speedDraw->setPositionY(drawPos - 25.f);
+
+    if (m_segments.empty()) m_segments = createDrawSegmentsFrom(m_level);
     
+    drawSegmentGroupAtY(m_segments.at(0), m_portalDraw);
+    drawSegmentGroupAtY(m_segments.at(1), m_speedDraw);
+
+    // ok so idc if i loop thru the vector like 9 times cuz like im lazy and even if u have like 100 portals thats only like 900 iterations of rly basic operations so wtv
+
+    std::string distributionString = "";
+    for (int j = 0; j < 8; j++) {
+        float totalPercentage = 0.0f;
+        auto type = static_cast<PortalType>(j);
+        for (const auto& segment : m_segments) {
+            if (segment.type == type) totalPercentage += segment.end - segment.start;
+        }
+        if (totalPercentage == 0.0f) continue;
+        distributionString += (portalStringMap.at(type) + ": " + ftofstr(totalPercentage, 2) + "%, ");
+    }
+    if (distributionString.length() > 2) distributionString.erase(distributionString.end() - 2);
+    m_gamemodeDistributionLabel->setString(distributionString.c_str());
+    m_gamemodeDistributionLabel->limitLabelWidth(m_size.width - 100.0f, 0.45f, 0.0f);
+}
+
+void GamemodeVisualizerPopup::drawSegmentGroupAtY(std::vector<DrawSegmentStruct> segmentGroup, CCDrawNode* drawNode) {
     int i = 0;
-    for (const auto& segment : m_segments) {
+    for (const auto& segment : segmentGroup) {
         float start = segment.start * Variables::width;
         float end = segment.end * Variables::width;
-        m_draw->drawRect(ccp(start, 0.0f), ccp(end, Variables::height), segment.col, 0, segment.col);
+        drawNode->drawRect(ccp(start, 0.0f), ccp(end, Variables::height), segment.col, 0, segment.col);
         if (Variables::separators && i != 0) {
-            m_draw->drawSegment(
+            drawNode->drawSegment(
                 ccp(start, Variables::separatorThickness / 2), 
                 ccp(start, Variables::height - Variables::separatorThickness / 2),
                 Variables::separatorThickness, Variables::seperatorCol
@@ -108,22 +137,6 @@ void GamemodeVisualizerPopup::drawVisualizer() {
 
         i++;
     }
-
-    // ok so idc if i loop thru the vector like 9 times cuz like im lazy and even if u have like 100 portals thats only like 900 iterations of rly basic operations so wtv
-
-    std::string distributionString = "";
-    for (int j = 0; j < 8; j++) {
-        float totalPercentage = 0.0f;
-        auto type = static_cast<PortalType>(j);
-        for (const auto& segment : m_segments) {
-            if (segment.type == type) totalPercentage += segment.end - segment.start;
-        }
-        if (totalPercentage == 0.0f) continue;
-        distributionString += (portalStringMap.at(type) + ": " + ftofstr(totalPercentage, 2) + "%, ");
-    }
-    if (distributionString.length() > 2) distributionString.erase(distributionString.end() - 2);
-    m_gamemodeDistributionLabel->setString(distributionString.c_str());
-    m_gamemodeDistributionLabel->limitLabelWidth(m_size.width - 100.0f, 0.45f, 0.0f);
 }
 
 void GamemodeVisualizerPopup::onToggleLabelLayer(CCObject* sender) {

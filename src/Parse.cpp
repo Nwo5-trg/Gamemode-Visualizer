@@ -4,11 +4,15 @@
 
 using namespace geode::prelude;
 
-std::vector<DrawSegmentStruct> mysupercoolandawesomeparsingfunctionthathasnoissuesorflawswhatsoeverthesearethepositiveaffirmationsitellmyselfinthemirror(GJGameLevel* level) {
+std::vector<std::vector<DrawSegmentStruct>> createDrawSegmentsFrom(GJGameLevel* level) {
     auto splitLevelString = string::split(ZipUtils::decompressString(level->m_levelString, true, 0), ";"); // ethically sourced from literal level lengths
-    if (splitLevelString.size() < 2) return {{0.0f, 100.0f, {1.0f, 1.0f, 1.0f, 1.0f}, PortalType::Cube}}; // damn u cooked
+    if (splitLevelString.size() < 2) return {
+        {GameplayElementType::Portal, {{0.0f, 100.0f, {0.4f, 1.0f, 0.2f, 1.0f}, PortalType::Cube}}},
+        {GameplayElementType::Speed, {{0.0f, 100.0f, {1.0f, 1.0f, 1.0f, 1.0f}, SpeedType::Normal}}}
+    }; // damn u cooked
 
     std::map<float, PortalStruct> portalStructs; // sorting :3
+    std::map<float, SpeedStruct> speedStructs; // sorting :3
 
     { // you just gotta believe
         auto levelSettings = splitLevelString[0];
@@ -19,6 +23,15 @@ std::vector<DrawSegmentStruct> mysupercoolandawesomeparsingfunctionthathasnoissu
             auto end = levelSettings.find(",", start);
             portalStructs.insert({0.0f, {
                 static_cast<PortalType>(geode::utils::numFromString<int>(levelSettings.substr(start, end - start)).unwrapOr(0L)), ccp(0.0f, 0.0f)
+            }});
+        }
+
+        start = levelSettings.find("kA4,");
+        if (start != std::string::npos) {
+            start += 4;
+            auto end = levelSettings.find(",", start);
+            speedStructs.insert({0.0f, {
+                static_cast<SpeedType>(geode::utils::numFromString<int>(levelSettings.substr(start, end - start)).unwrapOr(1L)), ccp(0.0f, 0.0f)
             }});
         }
     }
@@ -45,15 +58,21 @@ std::vector<DrawSegmentStruct> mysupercoolandawesomeparsingfunctionthathasnoissu
             Variables::endsEarly = true;
             continue;
         }
-        if (!portalIDMap.contains(id)) continue;
+        if (!portalIDMap.contains(id) && !speedIDMap.contains(id)) continue;
 
-        portalStructs.insert({pos.x, {portalIDMap.at(id), pos}});
+        if (portalIDMap.contains(id)) portalStructs.insert({pos.x, {portalIDMap.at(id), pos}});
+        else if (speedIDMap.contains(id)) speedStructs.insert({pos.x, {speedIDMap.at(id), pos}});
     }
 
     std::vector<PortalStruct> portalStructsVector;
     for (const auto& [key, portal] : portalStructs) portalStructsVector.emplace_back(portal);
 
-    std::vector<DrawSegmentStruct> drawSegmentStructs;
+    std::vector<SpeedStruct> speedStructsVector;
+    for (const auto& [key, speed] : speedStructs) speedStructsVector.emplace_back(speed);
+
+    std::vector<std::vector<DrawSegmentStruct>> segments;
+    std::vector<DrawSegmentStruct> portalSegmentStructs;
+    std::vector<DrawSegmentStruct> speedSegmentStructs;
 
     if (maxX == 0) maxX = 1;
     float percentageMultiplier = 100 / maxX;
@@ -63,14 +82,32 @@ std::vector<DrawSegmentStruct> mysupercoolandawesomeparsingfunctionthathasnoissu
         auto col = colorFromPortalType(portal.type);
 
         if (i == portalStructsVector.size() - 1) {
-            drawSegmentStructs.emplace_back(portalPercentage, 100.0f, col, portal.type);
+            portalSegmentStructs.emplace_back(portalPercentage, 100.0f, col, portal.type);
         } else {
             float nextPortalPercentage = portalStructsVector[i + 1].pos.x * percentageMultiplier;
-            drawSegmentStructs.emplace_back(portalPercentage, nextPortalPercentage, col, portal.type);
+            portalSegmentStructs.emplace_back(portalPercentage, nextPortalPercentage, col, portal.type);
+        }
+
+        i++;
+    };
+    
+    i = 0;
+    for (const auto& speed : speedStructsVector) {
+        float speedPercentage = speed.pos.x * percentageMultiplier;
+        auto col = colorFromSpeedType(speed.type);
+
+        if (i == speedStructsVector.size() - 1) {
+            speedSegmentStructs.emplace_back(speedPercentage, 100.0f, col, speed.type);
+        } else {
+            float nextSpeedPercentage = speedStructsVector[i + 1].pos.x * percentageMultiplier;
+            speedSegmentStructs.emplace_back(speedPercentage, nextSpeedPercentage, col, speed.type);
         }
 
         i++;
     };
 
-    return drawSegmentStructs;
+    segments.emplace_back(portalSegmentStructs);
+    segments.emplace_back(speedSegmentStructs);
+
+    return segments;
 }

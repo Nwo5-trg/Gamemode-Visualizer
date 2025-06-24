@@ -52,14 +52,14 @@
 			"type": "float",
 			"name": "Width",
 			"default": 325,
-			"min": 1,
+			"min": 325,
 			"max": 580
 		},
 		"height": {
 			"type": "float",
 			"name": "Height",
-			"default": 25,
-			"min": 1,
+			"default": 50,
+			"min": 50,
 			"max": 320
 		}
 	}

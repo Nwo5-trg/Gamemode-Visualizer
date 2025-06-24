@@ -8,8 +8,8 @@ namespace Variables {
     inline bool separators = true;
 
     inline float separatorThickness = 1.0f;
-    inline float height = 1.0f;
-    inline float width = 1.0f;
+    inline float height = 325.0f;
+    inline float width = 50.0f;
     inline float minimumLabelSize = 1.0f;
 
     inline cocos2d::ccColor4F seperatorCol;

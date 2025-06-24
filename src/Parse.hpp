@@ -2,4 +2,4 @@
 
 struct DrawSegmentStruct;
 
-std::vector<DrawSegmentStruct> mysupercoolandawesomeparsingfunctionthathasnoissuesorflawswhatsoeverthesearethepositiveaffirmationsitellmyselfinthemirror(GJGameLevel* level);
+std::vector<std::vector<DrawSegmentStruct>> createDrawSegmentsFrom(GJGameLevel* level);

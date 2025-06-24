@@ -1,5 +1,10 @@
 #pragma once
 
+enum class GameplayElementType {
+    Portal = 0,
+    Speed = 1
+};
+
 enum class PortalType {
     Cube = 0,
     Ship = 1,
@@ -9,6 +14,14 @@ enum class PortalType {
     Robot = 5,
     Spider = 6,
     Swing = 7
+};
+
+enum class SpeedType {
+    Slow = 0,
+    Normal = 1,
+    Double = 2,
+    Triple = 3,
+    Quadruple = 4
 };
 
 struct DrawSegmentStruct {
@@ -35,6 +48,16 @@ struct PortalStruct {
     }
 };
 
+struct SpeedStruct {
+    SpeedType speed;
+    cocos2d::CCPoint pos;
+
+    SpeedStruct(SpeedType spd, cocos2d::CCPoint po) {
+        speed = spd;
+        pos = po;
+    }
+};
+
 inline const std::unordered_map<int, PortalType> portalIDMap = {
     {12, PortalType::Cube}, {13, PortalType::Ship}, {47, PortalType::Ball},
     {111, PortalType::Ufo}, {660, PortalType::Wave}, {745, PortalType::Robot},
@@ -43,8 +66,23 @@ inline const std::unordered_map<int, PortalType> portalIDMap = {
 
 inline const std::unordered_map<PortalType, std::string> portalStringMap = {
     {PortalType::Cube, "Cube"}, {PortalType::Ship, "Ship"}, {PortalType::Ball, "Ball"},
-    {PortalType::Ufo, "Ufo"}, {PortalType::Wave, "Wave"}, {PortalType::Robot, "Robot"},
+    {PortalType::Ufo, "UFO"}, {PortalType::Wave, "Wave"}, {PortalType::Robot, "Robot"},
     {PortalType::Spider, "Spider"}, {PortalType::Swing, "Swing"}
+};
+
+inline const std::unordered_map<int, SpeedType> speedIDMap = {
+    {200, SpeedType::Slow}, {201, SpeedType::Normal}, {202, SpeedType::Double},
+    {203, SpeedType::Triple}, {1334, SpeedType::Quadruple}
+};
+
+inline const std::unordered_map<int, std::string> speedSpriteFrameMap = {
+    {200, "boost_01_001.png"}, {201, "boost_02_001.png"}, {202, "boost_03_001.png"},
+    {203, "boost_04_001.png"}, {1334, "boost_05_001.png"}
+};
+
+inline const std::unordered_map<SpeedType, std::string> speedStringMap = {
+    {SpeedType::Slow, ".5x"}, {SpeedType::Normal, "1x"}, {SpeedType::Double, "2x"},
+    {SpeedType::Triple, "3x"}, {SpeedType::Quadruple, "4x"}
 };
 
 inline const std::set incompatibleTriggers = {
