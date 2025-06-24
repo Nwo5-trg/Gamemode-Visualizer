@@ -75,11 +75,10 @@ void GamemodeVisualizerPopup::drawVisualizer() {
         float start = segment.start * Variables::width;
         float end = segment.end * Variables::width;
         m_draw->drawRect(ccp(start, 0.0f), ccp(end, Variables::height), segment.col, 0, segment.col);
-        if (i != 0) {
-            float halfThickness = Variables::separatorThickness / 2;
+        if (Variables::separators && i != 0) {
             m_draw->drawSegment(
-                ccp(start - halfThickness, halfThickness), 
-                ccp(start - halfThickness, Variables::height - halfThickness),
+                ccp(start, Variables::separatorThickness / 2), 
+                ccp(start, Variables::height - Variables::separatorThickness / 2),
                 Variables::separatorThickness, Variables::seperatorCol
             );
         }

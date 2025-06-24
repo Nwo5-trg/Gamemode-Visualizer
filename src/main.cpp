@@ -13,7 +13,7 @@ class $modify(UwUInfoLayer, LevelInfoLayer) {
         if (auto menu = this->getChildByID("left-side-menu")) {
             auto button = CCMenuItemSpriteExtra::create(
                 CircleButtonSprite::create(CCSprite::create("button.png"_spr), 
-                CircleBaseColor::Green, CircleBaseSize::Small), 
+                CircleBaseColor::Green, CircleBaseSize::Medium), 
                 this, menu_selector(UwUInfoLayer::onVisualizeGamemodes)
             );
             menu->addChild(button);
@@ -35,7 +35,7 @@ class $modify(EditUwULayer, EditLevelLayer) {
         if (auto menu = this->getChildByID("folder-menu")) {
             auto button = CCMenuItemSpriteExtra::create(
                 CircleButtonSprite::create(CCSprite::create("button.png"_spr),
-                CircleBaseColor::Green, CircleBaseSize::Small),
+                CircleBaseColor::Green, CircleBaseSize::Medium),
                 this, menu_selector(EditUwULayer::onVisualizeGamemodes)
             );
             menu->addChild(button);
