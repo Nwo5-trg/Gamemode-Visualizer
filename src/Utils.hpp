@@ -60,19 +60,19 @@ struct SpeedStruct {
 
 inline const std::unordered_map<int, PortalType> portalIDMap = {
     {12, PortalType::Cube}, {13, PortalType::Ship}, {47, PortalType::Ball},
-    {111, PortalType::Ufo}, {660, PortalType::Wave}, {745, PortalType::Robot},
+    {111, PortalType::UFO}, {660, PortalType::Wave}, {745, PortalType::Robot},
     {1331, PortalType::Spider}, {1933, PortalType::Swing}
 };
 
 inline const std::unordered_map<PortalType, std::string> portalStringMap = {
     {PortalType::Cube, "Cube"}, {PortalType::Ship, "Ship"}, {PortalType::Ball, "Ball"},
-    {PortalType::Ufo, "UFO"}, {PortalType::Wave, "Wave"}, {PortalType::Robot, "Robot"},
+    {PortalType::UFO, "UFO"}, {PortalType::Wave, "Wave"}, {PortalType::Robot, "Robot"},
     {PortalType::Spider, "Spider"}, {PortalType::Swing, "Swing"}
 };
 
 inline const std::unordered_map<PortalType, std::string> portalSpriteFrameMap = {
     {PortalType::Cube, "portal_03_extra_2_001-uhd.png"}, {PortalType::Ship, "portal_04_extra_2_001-uhd.png"}, {PortalType::Ball, "portal_07_extra_2_001-uhd.png"},
-    {PortalType::Ufo, "portal_10_extra_2_001-uhd.png"}, {PortalType::Wave, "portal_13_extra_2_001-uhd.png"}, {PortalType::Robot, "portal_14_extra_2_001-uhd.png"},
+    {PortalType::UFO, "portal_10_extra_2_001-uhd.png"}, {PortalType::Wave, "portal_13_extra_2_001-uhd.png"}, {PortalType::Robot, "portal_14_extra_2_001-uhd.png"},
     {PortalType::Spider, "portal_17_extra_2_001-uhd.png"}, {PortalType::Swing, "portal_18_extra_2_001-uhd.png"}
 };
 

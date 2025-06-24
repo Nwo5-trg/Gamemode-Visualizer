@@ -7,7 +7,7 @@ ccColor4F colorFromPortalType(PortalType type) {
         case PortalType::Cube: return ccc4f(0.4f, 1.0f, 0.2f, 1.0f);
         case PortalType::Ship: return ccc4f(1.0f, 0.2f, 1.0f, 1.0f);
         case PortalType::Ball: return ccc4f(1.0f, 0.2f, 0.2f, 1.0f);
-        case PortalType::Ufo: return ccc4f(0.95f, 0.6f, 0.04f, 1.0f);
+        case PortalType::UFO: return ccc4f(0.95f, 0.6f, 0.04f, 1.0f);
         case PortalType::Wave: return ccc4f(0.01f, 0.8f, 1.0f, 1.0f);
         case PortalType::Robot: return ccc4f(0.9f, 0.9f, 0.9f, 1.0f);
         case PortalType::Spider: return ccc4f(0.4f, 0.1f, 0.85f, 1.0f);
@@ -18,13 +18,13 @@ ccColor4F colorFromPortalType(PortalType type) {
 
 ccColor4F colorFromSpeedType(SpeedType speed) {
     switch (speed) {
-        case SpeedType::Cube: return ccc4f(0.4f, 1.0f, 0.2f, 1.0f);
-        case SpeedType::Ship: return ccc4f(1.0f, 0.2f, 1.0f, 1.0f);
-        case SpeedType::Ball: return ccc4f(1.0f, 0.2f, 0.2f, 1.0f);
-        case SpeedType::Ufo: return ccc4f(0.95f, 0.6f, 0.04f, 1.0f);
-        case SpeedType::Wave: return ccc4f(0.01f, 0.8f, 1.0f, 1.0f);
+        case SpeedType::Slow: return ccc4f(0.95f, 0.6f, 0.04f, 1.0f);
+        case SpeedType::Normal: return ccc4f(0.01f, 0.8f, 1.0f, 1.0f);
+        case SpeedType::Double: return ccc4f(0.4f, 1.0f, 0.2f, 1.0f);
+        case SpeedType::Triple: return ccc4f(1.0f, 0.2f, 1.0f, 1.0f);
+        case SpeedType::Quadruple: return ccc4f(1.0f, 0.2f, 0.2f, 1.0f);
     }
-    return ccc4f(1.0f, 1.0f, 1.0f, 1.0f); // schizo real
+    return ccc4f(0.01f, 0.8f, 1.0f, 1.0f); // schizo real
 }
 
 std::string ftofstr(float num, int rounding) {
