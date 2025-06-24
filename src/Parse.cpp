@@ -6,10 +6,7 @@ using namespace geode::prelude;
 
 std::vector<std::vector<DrawSegmentStruct>> createDrawSegmentsFrom(GJGameLevel* level) {
     auto splitLevelString = string::split(ZipUtils::decompressString(level->m_levelString, true, 0), ";"); // ethically sourced from literal level lengths
-    if (splitLevelString.size() < 2) return {
-        {{0.0f, 100.0f, {0.4f, 1.0f, 0.2f, 1.0f}, PortalType::Cube}},
-        {{0.0f, 100.0f, {1.0f, 1.0f, 1.0f, 1.0f}, SpeedType::Normal}}
-    }; // damn u cooked
+    if (splitLevelString.size() < 2) return nullptr; // damn u cooked
 
     std::map<float, PortalStruct> portalStructs; // sorting :3
     std::map<float, SpeedStruct> speedStructs; // sorting :3

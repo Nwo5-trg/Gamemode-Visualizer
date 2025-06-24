@@ -86,6 +86,7 @@ void GamemodeVisualizerPopup::drawVisualizer() {
     m_speedDraw->setPositionY(drawPos - 25.f);
 
     if (m_segments.empty()) m_segments = createDrawSegmentsFrom(m_level);
+    if (!m_segments) return this->removeMeAndCleanup();
     
     drawSegmentGroupAtY(m_segments.at(0), m_portalDraw);
     drawSegmentGroupAtY(m_segments.at(1), m_speedDraw);
