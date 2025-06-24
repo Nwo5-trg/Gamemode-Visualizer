@@ -59,6 +59,14 @@ bool GamemodeVisualizerPopup::setup() {
 
     drawVisualizer();
 
+    if (!hasDirectionalChanges && !endsEarly) return true;
+    auto mayBeUnsupportedLabel = CCLabelBMFont::create("(This level could change directions and/or end early. Results may be incorrect.)", "chatFont.fnt");
+    mayBeUnsupportedLabel->setPosition(this->m_title->getPosition());
+    mayBeUnsupportedLabel->setPositionY(mayBeUnsupportedLabel->getPositionY() - 12.5f);
+    mayBeUnsupportedLabel->limitLabelWidth(this->m_mainLayer->getContentSize().width * .75f, 1.f, 0.001f);
+    mayBeUnsupportedLabel->setColor({100.f, 100.f, 100.f});
+    m_mainLayer->addChild(mayBeUnsupportedLabel);
+
     return true;
 }
 

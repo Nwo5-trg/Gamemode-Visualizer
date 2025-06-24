@@ -1,5 +1,6 @@
 #include "Parse.hpp"
 #include "Utils.hpp"
+#include "Variables.hpp"
 
 using namespace geode::prelude;
 
@@ -17,7 +18,7 @@ std::vector<DrawSegmentStruct> mysupercoolandawesomeparsingfunctionthathasnoissu
             start += 4;
             auto end = levelSettings.find(",", start);
             portalStructs.insert({0.0f, {
-                static_cast<PortalType>(std::strtol(levelSettings.substr(start, end - start).c_str(), nullptr, 10)), ccp(0.0f, 0.0f)
+                static_cast<PortalType>(geode::utils::numFromString<int>(levelSettings.substr(start, end - start), 10).unwrapOr(0L)), ccp(0.0f, 0.0f)
             }});
         }
     }
@@ -31,11 +32,19 @@ std::vector<DrawSegmentStruct> mysupercoolandawesomeparsingfunctionthathasnoissu
 
         if (splitObjString.size() < 6) continue;
 
-        auto pos = ccp(std::strtof(splitObjString[3].c_str(), nullptr), std::strtof(splitObjString[5].c_str(), nullptr));
+        auto pos = ccp(geode::utils::numFromString<double>(splitObjString[3]), geode::utils::numFromString<double>(splitObjString[5]));
         if (pos.x < 0) continue;
         if (pos.x > maxX) maxX = pos.x;
 
-        int id = std::strtol(splitObjString[1].c_str(), nullptr, 10);
+        int id = geode::utils::numFromString<int>(splitObjString[1]);
+        if (!hasDirectionalChanges && incompatibleTriggers.contains(id)) {
+            hasDirectionalChanges = true;
+            continue;
+        }
+        if (!endsEarly && id == endTrigger) {
+            endsEarly = true;
+            continue;
+        }
         if (!portalIDMap.contains(id)) continue;
 
         portalStructs.insert({pos.x, {portalIDMap.at(id), pos}});

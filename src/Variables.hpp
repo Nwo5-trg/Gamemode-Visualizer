@@ -1,6 +1,9 @@
 #pragma once
 
 namespace Variables {
+    inline bool hasDirectionalChanges = false;
+    inline bool endsEarly = false;
+
     inline bool enabled = true;
     inline bool separators = true;
 

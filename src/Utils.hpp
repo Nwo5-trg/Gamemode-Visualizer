@@ -47,6 +47,13 @@ inline const std::unordered_map<PortalType, std::string> portalStringMap = {
     {PortalType::Spider, "Spider"}, {PortalType::Swing, "Swing"}
 };
 
+inline const std::set incompatibleTriggers = {
+    1917, // reverse trigger
+    2900, // arrow trigger
+}
+
+inline const int endTrigger = 3600;
+
 cocos2d::ccColor4F colorFromPortalType(PortalType type);
 
 std::string ftofstr(float num, int rounding);
