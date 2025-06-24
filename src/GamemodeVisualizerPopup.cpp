@@ -107,7 +107,7 @@ void GamemodeVisualizerPopup::drawVisualizer() {
     m_gamemodeDistributionLabel->limitLabelWidth(m_size.width - 100.0f, 0.45f, 0.0f);
 }
 
-void GamemodeVisualizerPopup::drawSegmentGroupAtY(std::vector<DrawSegmentStruct> segmentGroup, CCDrawNode* drawNode) {
+void GamemodeVisualizerPopup::drawSegmentGroup(std::vector<DrawSegmentStruct> segmentGroup, CCDrawNode* drawNode) {
     int i = 0;
     auto drawPos = drawNode->getPosition();
     for (const auto& segment : segmentGroup) {

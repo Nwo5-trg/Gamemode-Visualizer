@@ -22,4 +22,5 @@ public:
     bool setup() override;
 
     void drawVisualizer();
+    void drawSegmentGroup(std::vector<DrawSegmentStruct> segmentGroup, CCDrawNode* drawNode);
 };
