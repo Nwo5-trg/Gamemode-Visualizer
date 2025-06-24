@@ -109,6 +109,7 @@ void GamemodeVisualizerPopup::drawVisualizer() {
 
 void GamemodeVisualizerPopup::drawSegmentGroupAtY(std::vector<DrawSegmentStruct> segmentGroup, CCDrawNode* drawNode) {
     int i = 0;
+    auto drawPos = drawNode->getPosition();
     for (const auto& segment : segmentGroup) {
         float start = segment.start * Variables::width;
         float end = segment.end * Variables::width;
