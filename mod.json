@@ -14,7 +14,7 @@
 	"links": {"source": "https://github.com/Nwo5-trg/Gamemode-Visualizer"},
 	"tags": ["utility", "offline"],
 	"dependencies": {
-		"geode.node-ids": ">=1.20.1"
+		"geode.node-ids": ">=1.21.1"
 	},
 	"resources": {"sprites": ["resources/*.png"]},
 	"settings": {
@@ -32,7 +32,7 @@
 			"type": "float",
 			"name": "Separator Thickness",
 			"default": 0.5,
-			"min": 1,
+			"min": 0.1,
 			"max": 10
 		},
 		"separator-col": {
