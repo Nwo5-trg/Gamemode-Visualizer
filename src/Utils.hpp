@@ -9,7 +9,7 @@ enum class PortalType {
     Cube = 0,
     Ship = 1,
     Ball = 2,
-    Ufo = 3,
+    UFO = 3,
     Wave = 4,
     Robot = 5,
     Spider = 6,
