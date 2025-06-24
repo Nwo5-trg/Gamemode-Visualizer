@@ -1,0 +1,66 @@
+{
+	"geode": "4.5.0",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
+	},
+	"id": "nwo5.gamemode_visualizer",
+	"name": "Gamemode Visualizer",
+	"version": "v1.0.0",
+	"developer": "Nwo5",
+	"description": "visualize ur gamemodes or smth",
+	"links": {"source": "https://github.com/Nwo5-trg/Gamemode-Visualizer"},
+	"tags": ["utility", "offline"],
+	"dependencies": {
+		"geode.node-ids": ">=1.20.1"
+	},
+	"resources": {"sprites": ["resources/*.png"]},
+	"settings": {
+		"enabled": {
+			"type": "bool",
+			"name": "Enabled",
+			"default": true
+		},
+		"separators": {
+			"type": "bool",
+			"name": "Separators",
+			"default": true
+		},
+		"separator-thickness": {
+			"type": "float",
+			"name": "Separator Thickness",
+			"default": 1.0,
+			"min": 1,
+			"max": 10
+		},
+		"separator-col": {
+			"type": "rgba",
+			"name": "Separator Color",
+			"default": [0, 0, 0, 100]
+		},
+		"minimum-label-size": {
+			"type": "float",
+			"name": "Minimum Label Size",
+			"description": "before they just dont render",
+			"default": 0.2,
+			"min": 0,
+			"max": 1
+		},
+		"width": {
+			"type": "float",
+			"name": "Width",
+			"default": 325,
+			"min": 1,
+			"max": 580
+		},
+		"height": {
+			"type": "float",
+			"name": "Height",
+			"default": 25,
+			"min": 1,
+			"max": 320
+		}
+	}
+}

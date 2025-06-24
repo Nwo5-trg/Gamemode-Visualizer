@@ -1,0 +1,5 @@
+#pragma once
+
+struct DrawSegmentStruct;
+
+std::vector<DrawSegmentStruct> mysupercoolandawesomeparsingfunctionthathasnoissuesorflawswhatsoeverthesearethepositiveaffirmationsitellmyselfinthemirror(GJGameLevel* level);
