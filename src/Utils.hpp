@@ -50,7 +50,7 @@ inline const std::unordered_map<PortalType, std::string> portalStringMap = {
 inline const std::set incompatibleTriggers = {
     1917, // reverse trigger
     2900, // arrow trigger
-}
+};
 
 inline const int endTrigger = 3600;
 

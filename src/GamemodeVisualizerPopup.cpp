@@ -59,7 +59,7 @@ bool GamemodeVisualizerPopup::setup() {
 
     drawVisualizer();
 
-    if (!hasDirectionalChanges && !endsEarly) return true;
+    if (!Variables::hasDirectionalChanges && !Variables::endsEarly) return true;
     auto mayBeUnsupportedLabel = CCLabelBMFont::create("(This level could change directions and/or end early. Results may be incorrect.)", "chatFont.fnt");
     mayBeUnsupportedLabel->setPosition(this->m_title->getPosition());
     mayBeUnsupportedLabel->setPositionY(mayBeUnsupportedLabel->getPositionY() - 12.5f);
