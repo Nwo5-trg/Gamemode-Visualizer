@@ -10,7 +10,7 @@ std::vector<std::vector<DrawSegmentStruct>> createDrawSegmentsFrom(GJGameLevel* 
         std::vector<std::vector<DrawSegmentStruct>> dummySegments;
         std::vector<DrawSegmentStruct> dummyPortalSegment;
         dummyPortalSegment.emplace_back(0.0f, 100.0f, colorFromPortalType(PortalType::Cube), 0);
-        std::vector<DrawSegmentStruct> dummySpeedSegment = {0.0f, 100.0f, colorFromSpeedType(SpeedType::Normal), 0}
+        std::vector<DrawSegmentStruct> dummySpeedSegment = {0.0f, 100.0f, colorFromSpeedType(SpeedType::Normal), 0};
         dummySegments.emplace_back(dummyPortalSegment);
         dummySegments.emplace_back(dummySpeedSegment);
         return dummySegments;
