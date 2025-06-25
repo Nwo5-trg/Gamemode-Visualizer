@@ -56,8 +56,8 @@ std::vector<std::vector<DrawSegmentStruct>> createDrawSegmentsFrom(GJGameLevel* 
         if (pos.x > maxX) maxX = pos.x;
 
         int id = geode::utils::numFromString<int>(splitObjString[1]).unwrapOr(-1);
-        if (!Variables::hasDirectionalChanges && incompatibleTriggers.contains(id)) {
-            Variables::hasDirectionalChanges = true;
+        if (!Variables::couldChangeDirOrTPOnXAxis && incompatibleObjects.contains(id)) {
+            Variables::couldChangeDirOrTPOnXAxis = true;
             continue; // since the object ID is not gonna be a speed portal or otherwise
         }
         if (!Variables::endsEarly && id == endTrigger) {

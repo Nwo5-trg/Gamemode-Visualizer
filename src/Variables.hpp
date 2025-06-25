@@ -1,7 +1,7 @@
 #pragma once
 
 namespace Variables {
-    inline bool hasDirectionalChanges = false;
+    inline bool couldChangeDirOrTPOnXAxis = false;
     inline bool endsEarly = false;
 
     inline bool enabled = true;

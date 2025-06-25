@@ -92,9 +92,13 @@ inline const std::unordered_map<SpeedType, std::string> speedSpriteFrameMap = {
     {SpeedType::Triple, "boost_04_001.png"}, {SpeedType::Quadruple, "boost_05_001.png"}
 };
 
-inline const std::set incompatibleTriggers = {
-    1917, // reverse trigger
-    2900, // arrow trigger
+inline const std::set incompatibleObjects = {
+    747,    // teleport portal (blue)
+    748,    // teleport portal (orange)
+    1917,   // reverse trigger
+    2900,   // arrow trigger
+    3022,   // teleport trigger
+    3027,   // teleport orb
 };
 
 inline const int endTrigger = 3600;

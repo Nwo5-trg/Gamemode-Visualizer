@@ -4,7 +4,7 @@ using namespace Variables;
 using namespace geode::prelude;
 
 void Variables::updateSettings() {
-    hasDirectionalChanges = false;
+    couldChangeDirOrTPOnXAxis = false;
     endsEarly = false;
 
     auto mod = Mod::get();
