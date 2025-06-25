@@ -9,9 +9,9 @@ std::vector<std::vector<DrawSegmentStruct>> createDrawSegmentsFrom(GJGameLevel* 
     if (splitLevelString.size() < 2) {
         std::vector<std::vector<DrawSegmentStruct>> dummySegments;
         std::vector<DrawSegmentStruct> dummyPortalSegment;
-        dummyPortalSegment.emplace_back(0.0f, 100.0f, colorFromPortalType(static_cast<PortalType>(0)), PortalType::Cube);
+        dummyPortalSegment.emplace_back(0.0f, 100.0f, colorFromPortalType(PortalType::Cube), 0);
         std::vector<DrawSegmentStruct> dummySpeedSegment;
-        dummySpeedSegment.emplace_back(0.0f, 100.0f, colorFromSpeedType(static_cast<SpeedType>(0)), SpeedType::Normal);
+        dummySpeedSegment.emplace_back(0.0f, 100.0f, colorFromSpeedType(SpeedType::Normal), 0);
         dummySegments.emplace_back(dummyPortalSegment);
         dummySegments.emplace_back(dummySpeedSegment);
         return dummySegments;
