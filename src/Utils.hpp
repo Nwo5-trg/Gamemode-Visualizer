@@ -3,7 +3,7 @@
 enum class GameplayPortalType {
     Portals = 0,
     Speeds = 0
-}
+};
 
 enum class PortalType {
     Cube = 0,

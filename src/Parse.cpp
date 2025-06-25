@@ -76,7 +76,7 @@ std::vector<std::vector<DrawSegmentStruct>> createDrawSegmentsFrom(GJGameLevel* 
     int i = 0;
     for (const auto& portal : portalStructsVector) {
         float portalPercentage = portal.pos.x * percentageMultiplier; // idc if this technically gets calculated twice for every portal i actually cant anymore
-        auto col = colorFromPortalType(static_cast<int>(portal.type));
+        auto col = colorFromPortalType(static_cast<PortalType>(portal.type));
 
         if (i == portalStructsVector.size() - 1) {
             portalSegmentStructs.emplace_back(portalPercentage, 100.0f, col, static_cast<int>(portal.type));
@@ -91,7 +91,7 @@ std::vector<std::vector<DrawSegmentStruct>> createDrawSegmentsFrom(GJGameLevel* 
     i = 0;
     for (const auto& speed : speedStructsVector) {
         float speedPercentage = speed.pos.x * percentageMultiplier;
-        auto col = colorFromSpeedType(static_cast<int>(speed.speed));
+        auto col = colorFromSpeedType(static_cast<SpeedType>(speed.speed));
 
         if (i == speedStructsVector.size() - 1) {
             speedSegmentStructs.emplace_back(speedPercentage, 100.0f, col, static_cast<int>(speed.speed));
