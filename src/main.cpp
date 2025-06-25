@@ -9,6 +9,7 @@ using namespace geode::prelude;
 class $modify(UwUInfoLayer, LevelInfoLayer) {
     bool init(GJGameLevel* level, bool challenge) {
         if (!LevelInfoLayer::init(level, challenge)) return false;
+        Variables::updateSettings();
         if (m_level->isPlatformer() || !Variables::enabled) return true;
         if (auto menu = this->getChildByID("left-side-menu")) {
             auto button = CCMenuItemSpriteExtra::create(
@@ -23,7 +24,6 @@ class $modify(UwUInfoLayer, LevelInfoLayer) {
     }
 
     void onVisualizeGamemodes(CCObject* sender) {
-        Variables::updateSettings();
         GamemodeVisualizerPopup::create(m_level)->show();
     }
 };
@@ -31,6 +31,7 @@ class $modify(UwUInfoLayer, LevelInfoLayer) {
 class $modify(EditUwULayer, EditLevelLayer) {
     bool init(GJGameLevel* p0) {
         if (!EditLevelLayer::init(p0)) return false;
+        Variables::updateSettings();
         if (m_level->isPlatformer() || !Variables::enabled) return true;
         if (auto menu = this->getChildByID("folder-menu")) {
             auto button = CCMenuItemSpriteExtra::create(

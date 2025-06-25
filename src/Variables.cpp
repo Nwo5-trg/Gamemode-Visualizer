@@ -8,6 +8,7 @@ void Variables::updateSettings() {
 
     enabled = mod->getSettingValue<bool>("enabled");
     separators = mod->getSettingValue<bool>("separators");
+    tryHandleEndTrigger = mod->getSettingValue<bool>("try-handle-end-trigger");
     
     separatorThickness = mod->getSettingValue<double>("separator-thickness");
     width = mod->getSettingValue<double>("width") / 100;

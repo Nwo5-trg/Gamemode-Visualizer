@@ -10,8 +10,14 @@ set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 project(GamemodeVisualizer VERSION 1.0.0)
 
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
+
+add_library(${PROJECT_NAME} SHARED 
+    src/Parse.cpp
+    src/Utils.cpp
+    src/Variables.cpp
+    src/GamemodeVisualizerPopup.cpp
+    src/main.cpp
+)
 
 if (NOT DEFINED ENV{GEODE_SDK})
     message(FATAL_ERROR "Unable to find Geode SDK! Please define GEODE_SDK environment variable to point to Geode")
