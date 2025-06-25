@@ -83,7 +83,7 @@ void GamemodeVisualizerPopup::drawVisualizer() {
     m_portalDraw->setPosition(drawPos);
     m_speedDraw->setPosition(drawPos);
 
-    m_speedDraw->setPositionY(drawPos - 25.f);
+    m_speedDraw->setPositionY(drawPos->getPositionY() - 25.f);
 
     if (m_segments.empty()) m_segments = createDrawSegmentsFrom(m_level);
     if (m_segments.empty()) return this->removeMeAndCleanup();
@@ -108,7 +108,7 @@ void GamemodeVisualizerPopup::drawVisualizer() {
     m_gamemodeDistributionLabel->limitLabelWidth(m_size.width - 100.0f, 0.45f, 0.0f);
 }
 
-void GamemodeVisualizerPopup::drawSegmentGroup(std::vector<DrawSegmentStruct> segmentGroup, CCDrawNode* drawNode) {
+void GamemodeVisualizerPopup::drawSegmentGroup(std::vector<DrawSegmentStruct> segmentGroup, cocos2d::CCDrawNode* drawNode) {
     int i = 0;
     auto drawPos = drawNode->getPosition();
     for (const auto& segment : segmentGroup) {
