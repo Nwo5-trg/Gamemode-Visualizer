@@ -28,7 +28,7 @@ std::vector<std::vector<DrawSegmentStruct>> createDrawSegmentsFrom(GJGameLevel* 
             start += 4;
             auto end = levelSettings.find(",", start);
             speedStructs.insert({0.0f, {
-                static_cast<SpeedType>(geode::utils::numFromString<int>(levelSettings.substr(start, end - start)).unwrapOr(1L)), ccp(0.0f, 0.0f)
+                static_cast<SpeedType>(geode::utils::numFromString<int>(levelSettings.substr(start, end - start)).unwrapOr(1)), ccp(0.0f, 0.0f)
             }});
         }
     }

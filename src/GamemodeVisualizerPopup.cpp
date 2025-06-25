@@ -79,11 +79,11 @@ void GamemodeVisualizerPopup::drawVisualizer() {
     m_speedDraw->clear();
     m_labelLayer->removeAllChildrenWithCleanup(true);
     
-    auto drawPos = ccp((m_size.width - (Variables::width * 100)) / 2, m_size.height + 25.0f);
+    auto drawPos = ccp((m_size.width - (Variables::width * 100)) / 2, (m_size.height / 2) + 25.0f);
     m_portalDraw->setPosition(drawPos);
     m_speedDraw->setPosition(drawPos);
 
-    m_speedDraw->setPositionY(m_speedDraw->getPositionY() - 50.f);
+    m_speedDraw->setPositionY(m_speedDraw->getPositionY() - 60.f);
 
     if (m_segments.empty()) m_segments = createDrawSegmentsFrom(m_level);
     if (m_segments.empty()) return this->removeMeAndCleanup();
