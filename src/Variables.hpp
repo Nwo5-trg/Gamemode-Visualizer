@@ -9,7 +9,7 @@ namespace Variables {
 
     inline float separatorThickness = 1.0f;
     inline float height = 325.0f;
-    inline float width = 50.0f;
+    inline float width = 100.0f;
     inline float minimumLabelSize = 1.0f;
 
     inline cocos2d::ccColor4F seperatorCol;

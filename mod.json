@@ -58,8 +58,8 @@
 		"height": {
 			"type": "float",
 			"name": "Height",
-			"default": 50,
-			"min": 50,
+			"default": 100,
+			"min": 100,
 			"max": 320
 		}
 	}

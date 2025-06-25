@@ -83,7 +83,7 @@ void GamemodeVisualizerPopup::drawVisualizer() {
     m_portalDraw->setPosition(drawPos);
     m_speedDraw->setPosition(drawPos);
 
-    m_speedDraw->setPositionY(m_speedDraw->getPositionY() - 25.f);
+    m_speedDraw->setPositionY(m_speedDraw->getPositionY() - 45.f);
 
     if (m_segments.empty()) m_segments = createDrawSegmentsFrom(m_level);
     if (m_segments.empty()) return this->removeMeAndCleanup();
@@ -114,11 +114,11 @@ void GamemodeVisualizerPopup::drawSegmentGroup(int index, cocos2d::CCDrawNode* d
     for (const auto& segment : m_segments.at(index)) {
         float start = segment.start * Variables::width;
         float end = segment.end * Variables::width;
-        drawNode->drawRect(ccp(start, 0.0f), ccp(end, Variables::height), segment.col, 0, segment.col);
+        drawNode->drawRect(ccp(start, 0.0f), ccp(end, 30.f), segment.col, 0, segment.col);
         if (Variables::separators && i != 0) {
             drawNode->drawSegment(
                 ccp(start, Variables::separatorThickness / 2), 
-                ccp(start, Variables::height - Variables::separatorThickness / 2),
+                ccp(start, 30.f - Variables::separatorThickness / 2),
                 Variables::separatorThickness, Variables::seperatorCol
             );
         }

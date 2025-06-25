@@ -49,11 +49,11 @@ std::vector<std::vector<DrawSegmentStruct>> createDrawSegmentsFrom(GJGameLevel* 
         int id = geode::utils::numFromString<int>(splitObjString[1]).unwrapOr(-1);
         if (!Variables::hasDirectionalChanges && incompatibleTriggers.contains(id)) {
             Variables::hasDirectionalChanges = true;
-            continue;
+            continue; // since the object ID is not gonna be a speed portal or otherwise
         }
         if (!Variables::endsEarly && id == endTrigger) {
             Variables::endsEarly = true;
-            continue;
+            continue; // since the object ID is not gonna be a speed portal or otherwise
         }
         if (!portalIDMap.contains(id) && !speedIDMap.contains(id)) continue;
 
