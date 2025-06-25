@@ -64,8 +64,8 @@ inline const std::unordered_map<int, std::string> dualPortalStringMap = {
 };
 
 inline const std::unordered_set<int> incompatibleObjects = {
-    747, // teleport portal (blue)
-    748, // teleport portal (orange)
+    2902, // teleport portal (blue)
+    2064, // teleport portal (orange)
     1917, // reverse trigger
     2900, // arrow trigger
     3022, // teleport trigger
