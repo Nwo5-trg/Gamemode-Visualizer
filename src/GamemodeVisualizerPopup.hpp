@@ -13,7 +13,6 @@ private:
     std::vector<std::vector<DrawSegmentStruct>> m_segments;
 
     int m_labelType = 0;
-    int m_nodeType = GameplayPortalType::Portals;
 
     void onToggleLabelLayer(cocos2d::CCObject* sender);
     void onChangeLabelType(cocos2d::CCObject* sender);
