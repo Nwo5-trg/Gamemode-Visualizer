@@ -83,13 +83,13 @@ void GamemodeVisualizerPopup::drawVisualizer() {
     m_portalDraw->setPosition(drawPos);
     m_speedDraw->setPosition(drawPos);
 
-    m_speedDraw->setPositionY(drawPos->getPositionY() - 25.f);
+    m_speedDraw->setPositionY(m_speedDraw->getPositionY() - 25.f);
 
     if (m_segments.empty()) m_segments = createDrawSegmentsFrom(m_level);
     if (m_segments.empty()) return this->removeMeAndCleanup();
     
-    drawSegmentGroupAtY(0, m_portalDraw);
-    drawSegmentGroupAtY(1, m_speedDraw);
+    drawSegmentGroup(0, m_portalDraw);
+    drawSegmentGroup(1, m_speedDraw);
 
     // ok so idc if i loop thru the vector like 9 times cuz like im lazy and even if u have like 100 portals thats only like 900 iterations of rly basic operations so wtv
 
