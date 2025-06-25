@@ -127,8 +127,8 @@ void GamemodeVisualizerPopup::drawSegmentGroup(int index, cocos2d::CCDrawNode* d
         if (m_labelType == 0) {
             labelString = numToString(segment.end - segment.start, 2) + "%"; 
         } else if (m_labelType == 1) {
-            if (index == 0) labelString = portalStringMap.at(segment.type);
-            else if (index == 1) labelString = speedStringMap.at(segment.type);
+            if (index == 0) labelString = portalStringMap.at(static_cast<PortalType>(segment.type));
+            else if (index == 1) labelString = speedStringMap.at(static_cast<SpeedType>(segment.type));
         }
         
         auto label = CCLabelBMFont::create(labelString.c_str(), "bigFont.fnt");
