@@ -124,8 +124,8 @@ void GamemodeVisualizerPopup::drawVisualizer() {
         distributionString += (speedStringMap.at(type) + ": " + ftofstr(totalPercentage, 2) + "%, ");
     }
     if (distributionString.length() > 2) distributionString.erase(distributionString.end() - 2);
-    m_gamemodeDistributionLabel->setString(distributionString.c_str());
-    m_gamemodeDistributionLabel->limitLabelWidth(m_size.width - 100.0f, 0.45f, 0.001f);
+    m_speedDistrubitionLabel->setString(distributionString.c_str());
+    m_speedDistrubitionLabel->limitLabelWidth(m_size.width - 100.0f, 0.45f, 0.001f);
 }
 
 void GamemodeVisualizerPopup::drawSegmentGroup(int index, cocos2d::CCDrawNode* drawNode) {
