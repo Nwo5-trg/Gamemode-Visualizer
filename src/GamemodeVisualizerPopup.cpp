@@ -98,7 +98,7 @@ void GamemodeVisualizerPopup::drawVisualizer() {
         float totalPercentage = 0.0f;
         auto type = static_cast<PortalType>(j);
         for (const auto& segment : m_segments.at(0)) {
-            if (segment.type == type) totalPercentage += segment.end - segment.start;
+            if (segment.type == j) totalPercentage += segment.end - segment.start;
         }
         if (totalPercentage == 0.0f) continue;
         distributionString += (portalStringMap.at(type) + ": " + ftofstr(totalPercentage, 2) + "%, ");
