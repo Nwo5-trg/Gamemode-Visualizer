@@ -81,14 +81,14 @@ inline const std::unordered_map<int, SpeedType> speedIDMap = {
     {203, SpeedType::Triple}, {1334, SpeedType::Quadruple}
 };
 
-inline const std::unordered_map<SpeedType, std::string> speedSpriteFrameMap = {
-    {SpeedType::Slow, "boost_01_001.png"}, {SpeedType::Normal, "boost_02_001.png"}, {SpeedType::Double, "boost_03_001.png"},
-    {SpeedType::Triple, "boost_04_001.png"}, {SpeedType::Quadruple, "boost_05_001.png"}
-};
-
 inline const std::unordered_map<SpeedType, std::string> speedStringMap = {
     {SpeedType::Slow, ".5x"}, {SpeedType::Normal, "1x"}, {SpeedType::Double, "2x"},
     {SpeedType::Triple, "3x"}, {SpeedType::Quadruple, "4x"}
+};
+
+inline const std::unordered_map<SpeedType, std::string> speedSpriteFrameMap = {
+    {SpeedType::Slow, "boost_01_001.png"}, {SpeedType::Normal, "boost_02_001.png"}, {SpeedType::Double, "boost_03_001.png"},
+    {SpeedType::Triple, "boost_04_001.png"}, {SpeedType::Quadruple, "boost_05_001.png"}
 };
 
 inline const std::set incompatibleTriggers = {

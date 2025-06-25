@@ -88,8 +88,8 @@ void GamemodeVisualizerPopup::drawVisualizer() {
     if (m_segments.empty()) m_segments = createDrawSegmentsFrom(m_level);
     if (m_segments.empty()) return this->removeMeAndCleanup();
     
-    drawSegmentGroupAtY(GameplayPortalType::Portals, m_portalDraw);
-    drawSegmentGroupAtY(GameplayPortalType::Speeds, m_speedDraw);
+    drawSegmentGroupAtY(0, m_portalDraw);
+    drawSegmentGroupAtY(1, m_speedDraw);
 
     // ok so idc if i loop thru the vector like 9 times cuz like im lazy and even if u have like 100 portals thats only like 900 iterations of rly basic operations so wtv
 
@@ -108,10 +108,10 @@ void GamemodeVisualizerPopup::drawVisualizer() {
     m_gamemodeDistributionLabel->limitLabelWidth(m_size.width - 100.0f, 0.45f, 0.0f);
 }
 
-void GamemodeVisualizerPopup::drawSegmentGroup(GameplayPortalType type, cocos2d::CCDrawNode* drawNode) {
+void GamemodeVisualizerPopup::drawSegmentGroup(int index, cocos2d::CCDrawNode* drawNode) {
     int i = 0;
     auto drawPos = drawNode->getPosition();
-    for (const auto& segment : m_segments.at(static_cast<int>(type))) {
+    for (const auto& segment : m_segments.at(index)) {
         float start = segment.start * Variables::width;
         float end = segment.end * Variables::width;
         drawNode->drawRect(ccp(start, 0.0f), ccp(end, Variables::height), segment.col, 0, segment.col);
@@ -127,7 +127,8 @@ void GamemodeVisualizerPopup::drawSegmentGroup(GameplayPortalType type, cocos2d:
         if (m_labelType == 0) {
             labelString = numToString(segment.end - segment.start, 2) + "%"; 
         } else if (m_labelType == 1) {
-            labelString = portalStringMap.at(segment.type);
+            if (index == 0) labelString = portalStringMap.at(segment.type);
+            else if (index == 1) labelString = speedStringMap.at(segment.type);
         }
         
         auto label = CCLabelBMFont::create(labelString.c_str(), "bigFont.fnt");
