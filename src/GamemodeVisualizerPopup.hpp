@@ -22,5 +22,5 @@ public:
     bool setup() override;
 
     void drawVisualizer();
-    void drawSegmentGroup(GameplayPortalType type, cocos2d::CCDrawNode* drawNode);
+    void drawSegmentGroup(int index, cocos2d::CCDrawNode* drawNode);
 };
