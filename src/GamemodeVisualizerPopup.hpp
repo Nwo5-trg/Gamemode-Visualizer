@@ -13,6 +13,7 @@ private:
     std::vector<std::vector<DrawSegmentStruct>> m_segments;
 
     int m_labelType = 0;
+    int m_nodeType = GameplayPortalType::Portals;
 
     void onToggleLabelLayer(cocos2d::CCObject* sender);
     void onChangeLabelType(cocos2d::CCObject* sender);
@@ -22,5 +23,5 @@ public:
     bool setup() override;
 
     void drawVisualizer();
-    void drawSegmentGroup(std::vector<DrawSegmentStruct> segmentGroup, cocos2d::CCDrawNode* drawNode);
+    void drawSegmentGroup(GameplayPortalType type, cocos2d::CCDrawNode* drawNode);
 };

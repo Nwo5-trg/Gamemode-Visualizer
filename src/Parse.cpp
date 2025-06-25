@@ -76,13 +76,13 @@ std::vector<std::vector<DrawSegmentStruct>> createDrawSegmentsFrom(GJGameLevel* 
     int i = 0;
     for (const auto& portal : portalStructsVector) {
         float portalPercentage = portal.pos.x * percentageMultiplier; // idc if this technically gets calculated twice for every portal i actually cant anymore
-        auto col = colorFromPortalType(portal.type);
+        auto col = colorFromPortalType(static_cast<int>(portal.type));
 
         if (i == portalStructsVector.size() - 1) {
-            portalSegmentStructs.emplace_back(portalPercentage, 100.0f, col, portal.type);
+            portalSegmentStructs.emplace_back(portalPercentage, 100.0f, col, static_cast<int>(portal.type));
         } else {
             float nextPortalPercentage = portalStructsVector[i + 1].pos.x * percentageMultiplier;
-            portalSegmentStructs.emplace_back(portalPercentage, nextPortalPercentage, col, portal.type);
+            portalSegmentStructs.emplace_back(portalPercentage, nextPortalPercentage, col, static_cast<int>(portal.type));
         }
 
         i++;
@@ -91,13 +91,13 @@ std::vector<std::vector<DrawSegmentStruct>> createDrawSegmentsFrom(GJGameLevel* 
     i = 0;
     for (const auto& speed : speedStructsVector) {
         float speedPercentage = speed.pos.x * percentageMultiplier;
-        auto col = colorFromSpeedType(speed.speed);
+        auto col = colorFromSpeedType(static_cast<int>(speed.speed));
 
         if (i == speedStructsVector.size() - 1) {
-            speedSegmentStructs.emplace_back(speedPercentage, 100.0f, col, speed.speed);
+            speedSegmentStructs.emplace_back(speedPercentage, 100.0f, col, static_cast<int>(speed.speed));
         } else {
             float nextSpeedPercentage = speedStructsVector[i + 1].pos.x * percentageMultiplier;
-            speedSegmentStructs.emplace_back(speedPercentage, nextSpeedPercentage, col, speed.speed);
+            speedSegmentStructs.emplace_back(speedPercentage, nextSpeedPercentage, col, static_cast<int>(speed.speed));
         }
 
         i++;

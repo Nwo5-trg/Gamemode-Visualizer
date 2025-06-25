@@ -88,8 +88,8 @@ void GamemodeVisualizerPopup::drawVisualizer() {
     if (m_segments.empty()) m_segments = createDrawSegmentsFrom(m_level);
     if (m_segments.empty()) return this->removeMeAndCleanup();
     
-    drawSegmentGroupAtY(m_segments.at(0), m_portalDraw);
-    drawSegmentGroupAtY(m_segments.at(1), m_speedDraw);
+    drawSegmentGroupAtY(GameplayPortalType::Portals, m_portalDraw);
+    drawSegmentGroupAtY(GameplayPortalType::Speeds, m_speedDraw);
 
     // ok so idc if i loop thru the vector like 9 times cuz like im lazy and even if u have like 100 portals thats only like 900 iterations of rly basic operations so wtv
 
@@ -97,7 +97,7 @@ void GamemodeVisualizerPopup::drawVisualizer() {
     for (int j = 0; j < 8; j++) {
         float totalPercentage = 0.0f;
         auto type = static_cast<PortalType>(j);
-        for (const auto& segment : m_segments) {
+        for (const auto& segment : m_segments.at(0)) {
             if (segment.type == type) totalPercentage += segment.end - segment.start;
         }
         if (totalPercentage == 0.0f) continue;
@@ -108,10 +108,10 @@ void GamemodeVisualizerPopup::drawVisualizer() {
     m_gamemodeDistributionLabel->limitLabelWidth(m_size.width - 100.0f, 0.45f, 0.0f);
 }
 
-void GamemodeVisualizerPopup::drawSegmentGroup(std::vector<DrawSegmentStruct> segmentGroup, cocos2d::CCDrawNode* drawNode) {
+void GamemodeVisualizerPopup::drawSegmentGroup(GameplayPortalType type, cocos2d::CCDrawNode* drawNode) {
     int i = 0;
     auto drawPos = drawNode->getPosition();
-    for (const auto& segment : segmentGroup) {
+    for (const auto& segment : m_segments.at(static_cast<int>(type))) {
         float start = segment.start * Variables::width;
         float end = segment.end * Variables::width;
         drawNode->drawRect(ccp(start, 0.0f), ccp(end, Variables::height), segment.col, 0, segment.col);
