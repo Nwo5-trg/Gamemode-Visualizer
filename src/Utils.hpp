@@ -17,8 +17,9 @@ enum class PortalType {
 };
 
 enum class SpeedType {
-    Slow = 0,
-    Normal = 1,
+    // for some absurd stinky reason i need to swap slow and normal so that level settings are interpreted properly?????????????? fuck this game fuck you robtop
+    Normal = 0,
+    Slow = 1,
     Double = 2,
     Triple = 3,
     Quadruple = 4
