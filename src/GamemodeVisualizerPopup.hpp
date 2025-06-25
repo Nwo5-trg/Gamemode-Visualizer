@@ -10,6 +10,7 @@ private:
     cocos2d::CCDrawNode* m_speedDraw;
     cocos2d::CCLayer* m_labelLayer;
     cocos2d::CCLabelBMFont* m_gamemodeDistributionLabel;
+    cocos2d::CCLabelBMFont* m_speedDistrubitionLabel;
     std::vector<std::vector<DrawSegmentStruct>> m_segments;
 
     int m_labelType = 0;

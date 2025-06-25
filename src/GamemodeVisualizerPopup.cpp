@@ -58,9 +58,15 @@ bool GamemodeVisualizerPopup::setup() {
 
     auto gamemodeDistributionLabel = CCLabelBMFont::create("", "bigFont.fnt");
     gamemodeDistributionLabel->setAnchorPoint(ccp(0.0f, 0.0f));
-    gamemodeDistributionLabel->setPosition(10.0f, 10.0f);
+    gamemodeDistributionLabel->setPosition(10.0f, 30.0f);
     m_mainLayer->addChild(gamemodeDistributionLabel);
     m_gamemodeDistributionLabel = gamemodeDistributionLabel;
+
+    auto speedDistrubitionLabel = CCLabelBMFont::create("", "bigFont.fnt");
+    speedDistrubitionLabel->setAnchorPoint(ccp(0.f, 0.f));
+    speedDistrubitionLabel->setPosition(10.f, 10.f);
+    m_mainLayer->addChild(speedDistrubitionLabel);
+    m_speedDistrubitionLabel = speedDistrubitionLabel;
 
     drawVisualizer();
 
@@ -105,7 +111,21 @@ void GamemodeVisualizerPopup::drawVisualizer() {
     }
     if (distributionString.length() > 2) distributionString.erase(distributionString.end() - 2);
     m_gamemodeDistributionLabel->setString(distributionString.c_str());
-    m_gamemodeDistributionLabel->limitLabelWidth(m_size.width - 100.0f, 0.45f, 0.0f);
+    m_gamemodeDistributionLabel->limitLabelWidth(m_size.width - 100.0f, 0.45f, 0.001f);
+    
+    distributionString = "";
+    for (int j = 0; j < 5; j++) {
+        float totalPercentage = 0.0f;
+        auto type = static_cast<SpeedType>(j);
+        for (const auto& segment : m_segments.at(1)) {
+            if (segment.type == j) totalPercentage += segment.end - segment.start;
+        }
+        if (totalPercentage == 0.0f) continue;
+        distributionString += (speedStringMap.at(type) + ": " + ftofstr(totalPercentage, 2) + "%, ");
+    }
+    if (distributionString.length() > 2) distributionString.erase(distributionString.end() - 2);
+    m_gamemodeDistributionLabel->setString(distributionString.c_str());
+    m_gamemodeDistributionLabel->limitLabelWidth(m_size.width - 100.0f, 0.45f, 0.001f);
 }
 
 void GamemodeVisualizerPopup::drawSegmentGroup(int index, cocos2d::CCDrawNode* drawNode) {
@@ -134,7 +154,7 @@ void GamemodeVisualizerPopup::drawSegmentGroup(int index, cocos2d::CCDrawNode* d
         auto label = CCLabelBMFont::create(labelString.c_str(), "bigFont.fnt");
         label->setScale(0.15f * Variables::width);
         label->limitLabelWidth((end - start) * 0.9f, label->getScale(), 0.0f);
-        if (label->getScale() < Variables::minimumLabelSize) label->setVisible(false);
+        if (label->getScale() < Variables::minimumLabelSize || (segment.end - segment.start) < 0.001f) label->setVisible(false);
         label->setPosition(start + ((end - start) / 2) + drawPos.x, drawPos.y - 15.0f);
         m_labelLayer->addChild(label); 
 
