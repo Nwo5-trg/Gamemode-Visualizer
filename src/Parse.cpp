@@ -8,8 +8,12 @@ std::vector<std::vector<DrawSegmentStruct>> createDrawSegmentsFrom(GJGameLevel* 
     auto splitLevelString = string::split(ZipUtils::decompressString(level->m_levelString, true, 0), ";"); // ethically sourced from literal level lengths
     if (splitLevelString.size() < 2) {
         std::vector<std::vector<DrawSegmentStruct>> dummySegments;
-        dummySegments.emplace_back({{0.0f, 100.0f, colorFromPortalType(static_cast<PortalType>(0)), PortalType::Cube}});
-        dummySegments.emplace_back({{0.0f, 100.0f, colorFromSpeedType(static_cast<SpeedType>(0)), SpeedType::Normal}});
+        std::vector<DrawSegmentStruct> dummyPortalSegment;
+        dummyPortalSegment.emplace_back({0.0f, 100.0f, colorFromPortalType(static_cast<PortalType>(0)), PortalType::Cube});
+        std::vector<DrawSegmentStruct> dummySpeedSegment;
+        dummySpeedSegment.emplace_back({0.0f, 100.0f, colorFromSpeedType(static_cast<SpeedType>(0)), SpeedType::Normal});
+        dummySegments.emplace_back(dummyPortalSegment);
+        dummySegments.emplace_back(dummySpeedSegment);
         return dummySegments;
     }
 
