@@ -18,11 +18,11 @@ ccColor4F colorFromPortalType(PortalType type) {
 
 ccColor4F colorFromSpeedType(SpeedType speed) {
     switch (speed) {
-        case SpeedType::Slow: return ccc4f(0.95f, 0.6f, 0.04f, 1.0f);
-        case SpeedType::Normal: return ccc4f(0.01f, 0.8f, 1.0f, 1.0f);
-        case SpeedType::Double: return ccc4f(0.4f, 1.0f, 0.2f, 1.0f);
-        case SpeedType::Triple: return ccc4f(1.0f, 0.2f, 1.0f, 1.0f);
-        case SpeedType::Quadruple: return ccc4f(1.0f, 0.2f, 0.2f, 1.0f);
+        case SpeedType::Slow: return ccc4f((254.f / 255.f), (215.f / 255.f), (1.f / 255.f), 1.0f);
+        case SpeedType::Normal: return ccc4f((1.f / 255.f), (229.f / 255.f), (255.f / 255.f), 1.0f);
+        case SpeedType::Double: return ccc4f((40.f / 255.f), (232.f / 255.f), (8.f / 255.f), 1.0f);
+        case SpeedType::Triple: return ccc4f((255.f / 255.f), (115.f / 255.f), (254.f / 255.f), 1.0f);
+        case SpeedType::Quadruple: return ccc4f((234.f / 255.f), (17.f / 255.f), (17.f / 255.f), 1.0f);
     }
     return ccc4f(0.01f, 0.8f, 1.0f, 1.0f); // schizo real
 }
